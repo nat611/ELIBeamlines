@@ -1,5 +1,5 @@
 % Loading folder
-folder = "/Users/Nathalie/Desktop/ELI Beamlines/Unknown sample etched at 1h/011/5um"; %locate folder
+folder = "/Users/Nathalie/Desktop/ELI Beamlines/Unknown sample etched at 1h/011/20um"; %locate folder
 filePattern = fullfile(folder, '*.tif'); 
 tifs= dir(filePattern); 
 
@@ -100,8 +100,8 @@ csvwrite('unique_diameters.csv', unique_diameters');
 %energy calc 
 energies_5um= [];
 for i =1:length(unique_diameters)
-    energy_calc_5um = 682.6644 * exp(-(unique_diameters(i))/0.23035) +...
-                      682.6644 * exp(-(unique_diameters(i))/0.28154) + 1.93188;
+    energy_calc_5um = 586.80959 * exp(-(unique_diameters(i))/0.23051) +...
+                      586.80959 * exp(-(unique_diameters(i))/0.28173) + 4.40957;
     energies_5um = [energies_5um energy_calc_5um];
 end 
 %change in energy
