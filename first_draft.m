@@ -1,5 +1,5 @@
 % Loading folder
-folder = "/Users/Nathalie/Desktop/ELI Beamlines/Unknown sample etched at 1h/011/20um"; %locate folder
+folder = "/Users/Nathalie/Desktop/ELI Beamlines/Pals_2022_decovolution test/321_p5"; %locate folder
 filePattern = fullfile(folder, '*.tif'); 
 tifs= dir(filePattern); 
 
@@ -58,7 +58,7 @@ for n=1:numel(masks) %looping through masks to identify objects
             %scaled area 
             area = stats(j).Area;
             scaled_area= area/scale^2;
-            if scaled_area > 1 && scaled_area < 7 %area limits (from calibration) 
+            if scaled_area > 1 && scaled_area < 100 %area limits (from calibration) 
                 plot(boundary(:,2), boundary(:,1), 'cyan', 'LineWidth', 2); %plotting boundaries
                 blobs = [blobs scaled_area]; %saving boundary data 
                 centroid = stats(j).Centroid; 
@@ -70,7 +70,7 @@ for n=1:numel(masks) %looping through masks to identify objects
     all_blobs = [all_blobs blobs]; %saving each individual image data 
 end 
 % save all data 
-csvwrite('all_blobs.csv', all_blobs');
+%csvwrite('all_blobs.csv', all_blobs');
 
 %calculating diameters
 diameters=[]; 
@@ -79,13 +79,13 @@ for i= 1:length(all_blobs)
     diameters = [diameters diameter];
 end 
 %saving diameters
-csvwrite('all_blobs_diameters.csv', diameters); 
+%csvwrite('all_blobs_diameters.csv', diameters); 
 
 % unique areas and their frequency
 [unique_blobs, ~, indices] = unique(all_blobs);
 counts = histcounts(indices, length(unique_blobs));
-csvwrite('counts.csv', counts');
-csvwrite('unique_blobs.csv', unique_blobs');
+%csvwrite('counts.csv', counts');
+%csvwrite('unique_blobs.csv', unique_blobs');
 
 %calculating unique diameters 
 %unique_diameters=[]; 
@@ -94,7 +94,7 @@ csvwrite('unique_blobs.csv', unique_blobs');
     %unique_diameters = [unique_diameters diameter];
 %end
 [unique_diameters, ~, indices] = unique(diameters);
-csvwrite('unique_diameters.csv', unique_diameters');
+%csvwrite('unique_diameters.csv', unique_diameters');
 
 %calculations
 %energy calc 
@@ -106,7 +106,7 @@ for i =1:length(unique_diameters)
 end 
 %change in energy
 energy_difference = abs(diff(energies_5um)); 
-csvwrite('energy_difference.csv', energy_difference);
+%csvwrite('energy_difference.csv', energy_difference);
 
 %solid angle 
 CR_area = ((395.0617*10^-6)*(246.9135*10^-6)); 
@@ -124,7 +124,7 @@ filtered_energy_diff = energy_difference(diameter_limits(1:end-1));
 
 %dN/dE: 
 dN_dE = filtered_counts ./ filtered_energy_diff;
-csvwrite('dN_dE.csv', dN_dE);
+%csvwrite('dN_dE.csv', dN_dE);
 
 %graphs: 
 % plot histogram with unique areas 
