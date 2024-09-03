@@ -1,5 +1,6 @@
 # ELIBeamlines
  ELI-Beamlines Internship Porject July-Sept 2024
+**This README file described the ELI_Beamlines.mlapp file in the respository. Download this app and open in app designer to view both the design and code.**
 Welcome to the ELI Beamlines App. In this README is some important information to aid in navigating the app.
 
 1. Firstly, there is a order in which the images should be uploaded, processed, and analysed. This is:
